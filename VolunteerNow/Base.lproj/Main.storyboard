@@ -420,12 +420,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8g7-1T-rTB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1581.5999999999999" y="-706.59670164917543"/>
+            <point key="canvasLocation" x="1582" y="-997"/>
         </scene>
-        <!--View Controller-->
+        <!--Container Search Controller-->
         <scene sceneID="oaL-M1-FqN">
             <objects>
-                <viewController id="9tI-3H-G9A" sceneMemberID="viewController">
+                <viewController id="9tI-3H-G9A" customClass="ContainerSearchController" customModule="VolunteerNow" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Kg0-43-Oal"/>
                         <viewControllerLayoutGuide type="bottom" id="oVa-dA-jXF"/>
@@ -433,13 +433,102 @@
                     <view key="view" contentMode="scaleToFill" id="AjW-i4-8cg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jVs-Gs-osM">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                            </containerView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="jVs-Gs-osM" firstAttribute="leading" secondItem="AjW-i4-8cg" secondAttribute="leading" id="Ct5-EK-uw2"/>
+                            <constraint firstItem="jVs-Gs-osM" firstAttribute="top" secondItem="Kg0-43-Oal" secondAttribute="bottom" id="hxN-yt-ajZ"/>
+                            <constraint firstItem="oVa-dA-jXF" firstAttribute="top" secondItem="jVs-Gs-osM" secondAttribute="bottom" id="sCa-0W-3rr"/>
+                            <constraint firstAttribute="trailing" secondItem="jVs-Gs-osM" secondAttribute="trailing" id="wVF-sz-UG4"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="4ip-o5-4tx"/>
+                    <navigationItem key="navigationItem" id="4ip-o5-4tx">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="owF-uN-dyt">
+                            <rect key="frame" x="112.5" y="7" width="150" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="List"/>
+                                <segment title="Map"/>
+                            </segments>
+                            <connections>
+                                <action selector="showComponent:" destination="9tI-3H-G9A" eventType="valueChanged" id="UBf-NX-ewU"/>
+                            </connections>
+                        </segmentedControl>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="containerView" destination="jVs-Gs-osM" id="gHb-LR-M4E"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TfH-oM-qX1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2521" y="-707"/>
+            <point key="canvasLocation" x="2520.8000000000002" y="-998.05097451274366"/>
+        </scene>
+        <!--Search List Controller-->
+        <scene sceneID="gQx-AS-f6S">
+            <objects>
+                <tableViewController id="jkH-X4-hPn" customClass="SearchListController" customModule="VolunteerNow" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="wv8-yy-JPZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Wfn-vN-Hak">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wfn-vN-Hak" id="ubd-Ap-U4b">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="jkH-X4-hPn" id="QeV-DJ-caQ"/>
+                            <outlet property="delegate" destination="jkH-X4-hPn" id="yeK-fC-1LK"/>
+                        </connections>
+                    </tableView>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="554"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dzz-Ut-Fg6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3302" y="-1403"/>
+        </scene>
+        <!--Search Map Controller-->
+        <scene sceneID="QW0-pb-Zeo">
+            <objects>
+                <viewController storyboardIdentifier="searchMapComponent" id="gAb-HS-sMS" customClass="SearchMapController" customModule="VolunteerNow" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pHT-hE-5tB"/>
+                        <viewControllerLayoutGuide type="bottom" id="L6Y-IG-d7M"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="giE-xU-OFu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Map" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DGG-PD-pXc">
+                                <rect key="frame" x="170.5" y="266.5" width="34" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="DGG-PD-pXc" firstAttribute="centerY" secondItem="giE-xU-OFu" secondAttribute="centerY" id="Ll9-Z9-uoX"/>
+                            <constraint firstItem="DGG-PD-pXc" firstAttribute="centerX" secondItem="giE-xU-OFu" secondAttribute="centerX" id="weX-4R-cAk"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="554"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zdg-k0-dzj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3302" y="-823"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="mKf-yG-zxr">
