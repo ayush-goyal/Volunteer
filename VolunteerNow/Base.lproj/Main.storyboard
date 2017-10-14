@@ -10,39 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller-->
-        <scene sceneID="YVp-0c-3Ih">
-            <objects>
-                <tableViewController id="AJU-7V-6NU" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="CD9-MS-dGI">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="AAF-fe-KVJ">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AAF-fe-KVJ" id="pG3-Yr-cmX">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="AJU-7V-6NU" id="QLP-Mg-9rs"/>
-                            <outlet property="delegate" destination="AJU-7V-6NU" id="r2E-lO-VBe"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="05H-EK-XjP"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Fdp-mh-vM1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2520.8000000000002" y="-706.59670164917543"/>
-        </scene>
-        <!--View Controller-->
+        <!--Welcome Controller-->
         <scene sceneID="mhq-Fj-sJa">
             <objects>
-                <viewController id="qxk-G3-zJq" sceneMemberID="viewController">
+                <viewController id="qxk-G3-zJq" customClass="WelcomeController" customModule="VolunteerNow" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Tnm-qs-TqM"/>
                         <viewControllerLayoutGuide type="bottom" id="Y4u-qn-QUh"/>
@@ -112,10 +83,10 @@
             </objects>
             <point key="canvasLocation" x="-1794" y="0.0"/>
         </scene>
-        <!--View Controller-->
+        <!--Signup Controller-->
         <scene sceneID="QSP-eo-2hW">
             <objects>
-                <viewController id="cOc-xm-qy1" sceneMemberID="viewController">
+                <viewController id="cOc-xm-qy1" customClass="SignupController" customModule="VolunteerNow" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="O2a-JR-F9Y"/>
                         <viewControllerLayoutGuide type="bottom" id="nlz-C3-yav"/>
@@ -196,11 +167,11 @@
             </objects>
             <point key="canvasLocation" x="-996" y="-288"/>
         </scene>
-        <!--View Controller-->
+        <!--Signup Information Controller-->
         <scene sceneID="8i6-SO-dLb">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XJe-hn-W3a" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="WLH-pU-QYh" sceneMemberID="viewController">
+                <viewController id="WLH-pU-QYh" customClass="SignupInformationController" customModule="VolunteerNow" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="P6R-Ab-rpN"/>
                         <viewControllerLayoutGuide type="bottom" id="GYD-mH-bbq"/>
@@ -348,10 +319,10 @@
             </objects>
             <point key="canvasLocation" x="734" y="0.0"/>
         </scene>
-        <!--View Controller-->
+        <!--Login Controller-->
         <scene sceneID="wgO-3V-mj2">
             <objects>
-                <viewController id="EjL-vp-Pvx" sceneMemberID="viewController">
+                <viewController id="EjL-vp-Pvx" customClass="LoginController" customModule="VolunteerNow" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CcG-yq-hra"/>
                         <viewControllerLayoutGuide type="bottom" id="Z8y-XW-33Q"/>
@@ -444,12 +415,31 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="AJU-7V-6NU" kind="relationship" relationship="rootViewController" id="l1A-Cd-9TQ"/>
+                        <segue destination="9tI-3H-G9A" kind="relationship" relationship="rootViewController" id="4dN-ph-KBe"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8g7-1T-rTB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1581.5999999999999" y="-706.59670164917543"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="oaL-M1-FqN">
+            <objects>
+                <viewController id="9tI-3H-G9A" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Kg0-43-Oal"/>
+                        <viewControllerLayoutGuide type="bottom" id="oVa-dA-jXF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AjW-i4-8cg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="4ip-o5-4tx"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TfH-oM-qX1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2521" y="-707"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="mKf-yG-zxr">
@@ -494,6 +484,6 @@
         <image name="landscape" width="2190" height="1369"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="kZz-xF-hAU"/>
+        <segue reference="GWD-Fw-aie"/>
     </inferredMetricsTieBreakers>
 </document>

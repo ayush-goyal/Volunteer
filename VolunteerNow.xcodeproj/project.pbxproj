@@ -14,6 +14,10 @@
 		FA3F50E61F929A72007F6F9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA3F50E51F929A72007F6F9D /* Assets.xcassets */; };
 		FA3F50E91F929A72007F6F9D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA3F50E71F929A72007F6F9D /* LaunchScreen.storyboard */; };
 		FA3F50F21F929AC2007F6F9D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA3F50F11F929AC2007F6F9D /* MapKit.framework */; };
+		FA3F50F51F92A8ED007F6F9D /* WelcomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3F50F41F92A8EC007F6F9D /* WelcomeController.swift */; };
+		FA3F50F71F92A906007F6F9D /* SignupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3F50F61F92A906007F6F9D /* SignupController.swift */; };
+		FA3F50F91F92A916007F6F9D /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3F50F81F92A916007F6F9D /* LoginController.swift */; };
+		FA3F50FB1F92A94F007F6F9D /* SignupInformationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3F50FA1F92A94F007F6F9D /* SignupInformationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +30,10 @@
 		FA3F50E81F929A72007F6F9D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA3F50EA1F929A72007F6F9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA3F50F11F929AC2007F6F9D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		FA3F50F41F92A8EC007F6F9D /* WelcomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeController.swift; sourceTree = "<group>"; };
+		FA3F50F61F92A906007F6F9D /* SignupController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupController.swift; sourceTree = "<group>"; };
+		FA3F50F81F92A916007F6F9D /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		FA3F50FA1F92A94F007F6F9D /* SignupInformationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupInformationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +68,7 @@
 		FA3F50DB1F929A72007F6F9D /* VolunteerNow */ = {
 			isa = PBXGroup;
 			children = (
+				FA3F50FC1F92A9F1007F6F9D /* Data */,
 				FA3F50F31F92A7E4007F6F9D /* Login */,
 				FA3F50DC1F929A72007F6F9D /* AppDelegate.swift */,
 				FA3F50DE1F929A72007F6F9D /* FirstViewController.swift */,
@@ -83,9 +92,20 @@
 		FA3F50F31F92A7E4007F6F9D /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				FA3F50F41F92A8EC007F6F9D /* WelcomeController.swift */,
+				FA3F50F61F92A906007F6F9D /* SignupController.swift */,
+				FA3F50F81F92A916007F6F9D /* LoginController.swift */,
+				FA3F50FA1F92A94F007F6F9D /* SignupInformationController.swift */,
 			);
 			name = Login;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		FA3F50FC1F92A9F1007F6F9D /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,8 +186,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA3F50FB1F92A94F007F6F9D /* SignupInformationController.swift in Sources */,
 				FA3F50E11F929A72007F6F9D /* SecondViewController.swift in Sources */,
+				FA3F50F91F92A916007F6F9D /* LoginController.swift in Sources */,
 				FA3F50DD1F929A72007F6F9D /* AppDelegate.swift in Sources */,
+				FA3F50F51F92A8ED007F6F9D /* WelcomeController.swift in Sources */,
+				FA3F50F71F92A906007F6F9D /* SignupController.swift in Sources */,
 				FA3F50DF1F929A72007F6F9D /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
