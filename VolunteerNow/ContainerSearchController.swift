@@ -19,14 +19,24 @@ class ContainerSearchController: UIViewController {
         self.addChildViewController(self.currentViewController!)
         self.addSubview(subView: self.currentViewController!.view, toView: self.containerView)
         super.viewDidLoad()
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "first"), style: .plain, target: self, action: #selector(filterList(_:)))
+        
+        
+    
     }
     
     @IBAction func showComponent(_ sender: UISegmentedControl) {
         var newViewController: UIViewController?
         if sender.selectedSegmentIndex == 0 {
             newViewController = self.storyboard?.instantiateViewController(withIdentifier: "searchListComponent")
+            
+            navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "first"), style: .plain, target: self, action: #selector(filterList(_:)))
+            
         } else {
             newViewController = self.storyboard?.instantiateViewController(withIdentifier: "searchMapComponent")
+            
+            navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "CurrentLocation"), style: .plain, target: self, action: #selector(zoomMap(_:)))
         }
         
         newViewController!.view.translatesAutoresizingMaskIntoConstraints = false
@@ -61,4 +71,28 @@ class ContainerSearchController: UIViewController {
         parentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[subView]|",
                                                                                  options: [], metrics: nil, views: viewBindingsDict))
     }
+    
+    func filterList(_ sender: Any) {
+        print("Filter List Opened")
+        if let viewController = storyboard?.instantiateViewController(withIdentifier: "barFilterNavigationController") {
+            present(viewController, animated: true, completion: nil)
+        }
+        
+    }
+    
+    
+    @IBAction func cancelToContainerSearchController(_ segue: UIStoryboardSegue) {
+        
+    }
+    
+    @IBAction func doneFilterDetails(_ segue: UIStoryboardSegue) {
+        print("Recalculate List")
+    }
+    
+    
+    func zoomMap(_ sender: Any) {
+        print("Zoom Map")
+    }
+    
+    
 }
