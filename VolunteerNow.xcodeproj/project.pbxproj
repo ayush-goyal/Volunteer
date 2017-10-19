@@ -84,9 +84,9 @@
 		FA3F50DB1F929A72007F6F9D /* VolunteerNow */ = {
 			isa = PBXGroup;
 			children = (
+				FAA45F551F984041009C54D8 /* Login */,
 				FA3F50FE1F92ACAD007F6F9D /* Search */,
 				FA3F50FC1F92A9F1007F6F9D /* Data */,
-				FA3F50F31F92A7E4007F6F9D /* Login */,
 				FA3F50DC1F929A72007F6F9D /* AppDelegate.swift */,
 				FA3F50DE1F929A72007F6F9D /* FirstViewController.swift */,
 				FA3F50E01F929A72007F6F9D /* SecondViewController.swift */,
@@ -104,18 +104,6 @@
 				FA3F50F11F929AC2007F6F9D /* MapKit.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		FA3F50F31F92A7E4007F6F9D /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				FA3F50F41F92A8EC007F6F9D /* WelcomeController.swift */,
-				FA3F50F61F92A906007F6F9D /* SignupController.swift */,
-				FA3F50F81F92A916007F6F9D /* LoginController.swift */,
-				FA3F50FA1F92A94F007F6F9D /* SignupInformationController.swift */,
-			);
-			name = Login;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		FA3F50FC1F92A9F1007F6F9D /* Data */ = {
@@ -138,6 +126,17 @@
 				FA36CC811F9419370012A0DA /* EventData.swift */,
 			);
 			name = Search;
+			sourceTree = "<group>";
+		};
+		FAA45F551F984041009C54D8 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				FA3F50F41F92A8EC007F6F9D /* WelcomeController.swift */,
+				FA3F50F61F92A906007F6F9D /* SignupController.swift */,
+				FA3F50F81F92A916007F6F9D /* LoginController.swift */,
+				FA3F50FA1F92A94F007F6F9D /* SignupInformationController.swift */,
+			);
+			name = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
