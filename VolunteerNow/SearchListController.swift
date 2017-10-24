@@ -7,86 +7,103 @@
 //
 
 import UIKit
+import CoreLocation
 
-class SearchListController: UITableViewController {
+class SearchListController: UITableViewController, CLLocationManagerDelegate {
 
+    var currentLocation: CLLocation?
+    var locationManager: CLLocationManager = CLLocationManager()
+    var eventsData = [Event]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        //locationManager.startUpdatingLocation()
+        
+        if let temporaryLocation = locationManager.location?.coordinate {
+            currentLocation = CLLocation(latitude: temporaryLocation.latitude, longitude: temporaryLocation.longitude)
+        }
+        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func updateView() {
+        tableView.reloadData()
+    }
+    
+    //MARK: - CoreLocation Delegate
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        currentLocation = locations.last
+        let locationValue: CLLocationCoordinate2D = manager.location!.coordinate
+        //print(locationValue)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error.localizedDescription)
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return eventsData.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as? EventCell else { fatalError() }
 
-        // Configure the cell...
-
+        cell.eventName.text = eventsData[indexPath.row].name
+        cell.eventOrganizer.text = eventsData[indexPath.row].organizer
+        cell.eventDate.text = eventsData[indexPath.row].date
+        
+        //cell.eventDistance.text = eventsData[indexPath.row].distance ?? eventsData[indexPath.row].location
+        let distanceInCLLocation = CLLocation(latitude: eventsData[indexPath.row].coordinate.latitude, longitude: eventsData[indexPath.row].coordinate.longitude)
+        if let distance = currentLocation?.distance(from: distanceInCLLocation) {
+            let distanceInMiles = (distance * 10/1609.34).rounded() / 10.0 // Gives one decimal point precision
+            let distanceInText = String(format:"%.1f", distanceInMiles) + " miles"
+            cell.eventDistance.text = distanceInText
+            print(distance)
+        } else {
+            cell.eventDistance.text = eventsData[indexPath.row].location
+        }
+        
         return cell
+        
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let eventDetailController = self.storyboard?.instantiateViewController(withIdentifier: "eventDetailController") as? EventDetailController {
+            eventDetailController.event = eventsData[indexPath.row]
+            //present(eventDetailController, animated: true, completion: nil)
+            navigationController?.pushViewController(eventDetailController, animated: true)
+        }
     }
-    */
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    @IBAction func returnToEventList(_ segue: UIStoryboardSegue) {
+    }
+    
+    /*
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "showEventDetail" {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let event = eventsData[indexPath.row]
+                
+                if let navigationController = segue.destination as? UINavigationController, let eventDetailController = navigationController.topViewController as? EventDetailController {
+                    eventDetailController.event = event
+                }
+            
+            }
+        }
     }
     */
 

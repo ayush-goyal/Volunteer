@@ -6,25 +6,35 @@
 //  Copyright © 2017 Ayush. All rights reserved.
 //
 
-import Foundation
+import CoreLocation
+import MapKit
 
-
-class Event {
-    let name: String
-    let organizer: String
-    let date: String
-    let location: String
+class Event: NSObject, MKAnnotation {
+    var name: String
+    var title: String?
+    var organizer: String
+    var date: String
+    var location: String
+    var distance: String?
+    var information: String
+    var coordinate: CLLocationCoordinate2D
     
-    init?(data: [String: String]) {
-        guard let name = data["name"], let organizer = data["organizer"], let date = data["date"], let location = data["location"] else {
+    init?(data: [String: Any]) {
+        guard let name = data["name"] as? String, let organizer = data["organizer"] as? String, let date = data["date"] as? String, let location = data["location"] as? String, let description = data["description"] as? String, let coordinate = data["coordinate"] as? [String: CLLocationDegrees] else {
             return nil
         }
         
         self.name = name
+        self.title = name
         self.organizer = organizer
         self.date = date
         self.location = location
+        self.information = description
+        guard let latitude = coordinate["latitude"], let longitude = coordinate["longitude"] else {
+            return nil }
+        self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
+    
 }
 
 

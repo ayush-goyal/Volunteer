@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E3FD6CC4B8CBEA8DBEB57D0F /* Pods_VolunteerNow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E70E0217291F8488A8BE40 /* Pods_VolunteerNow.framework */; };
+		FA2288A51F9BCF700063C693 /* EventDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2288A41F9BCF6F0063C693 /* EventDetailController.swift */; };
 		FA36CC7A1F92D8070012A0DA /* BarFilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA36CC791F92D8070012A0DA /* BarFilterController.swift */; };
 		FA36CC7C1F92D8160012A0DA /* BarSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA36CC7B1F92D8160012A0DA /* BarSearchController.swift */; };
 		FA36CC7E1F93BC3D0012A0DA /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA36CC7D1F93BC3D0012A0DA /* EventCell.swift */; };
@@ -29,6 +31,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		33E70E0217291F8488A8BE40 /* Pods_VolunteerNow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VolunteerNow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7ADA7A0481F8ED463455750 /* Pods-VolunteerNow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VolunteerNow.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VolunteerNow/Pods-VolunteerNow.debug.xcconfig"; sourceTree = "<group>"; };
+		D80D05A16FBC781318CD52F0 /* Pods-VolunteerNow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VolunteerNow.release.xcconfig"; path = "Pods/Target Support Files/Pods-VolunteerNow/Pods-VolunteerNow.release.xcconfig"; sourceTree = "<group>"; };
+		FA2288A41F9BCF6F0063C693 /* EventDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailController.swift; sourceTree = "<group>"; };
 		FA36CC791F92D8070012A0DA /* BarFilterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarFilterController.swift; sourceTree = "<group>"; };
 		FA36CC7B1F92D8160012A0DA /* BarSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarSearchController.swift; sourceTree = "<group>"; };
 		FA36CC7D1F93BC3D0012A0DA /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
@@ -58,18 +64,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA3F50F21F929AC2007F6F9D /* MapKit.framework in Frameworks */,
+				E3FD6CC4B8CBEA8DBEB57D0F /* Pods_VolunteerNow.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C1E4849A158AAEDEDC945C4D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C7ADA7A0481F8ED463455750 /* Pods-VolunteerNow.debug.xcconfig */,
+				D80D05A16FBC781318CD52F0 /* Pods-VolunteerNow.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		FA3F50D01F929A72007F6F9D = {
 			isa = PBXGroup;
 			children = (
 				FA3F50DB1F929A72007F6F9D /* VolunteerNow */,
 				FA3F50DA1F929A72007F6F9D /* Products */,
 				FA3F50F01F929AC2007F6F9D /* Frameworks */,
+				C1E4849A158AAEDEDC945C4D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				FA3F50F11F929AC2007F6F9D /* MapKit.framework */,
+				33E70E0217291F8488A8BE40 /* Pods_VolunteerNow.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -124,6 +142,7 @@
 				FA36CC7D1F93BC3D0012A0DA /* EventCell.swift */,
 				FA36CC7F1F9410B40012A0DA /* Event.swift */,
 				FA36CC811F9419370012A0DA /* EventData.swift */,
+				FA2288A41F9BCF6F0063C693 /* EventDetailController.swift */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -146,9 +165,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA3F50ED1F929A72007F6F9D /* Build configuration list for PBXNativeTarget "VolunteerNow" */;
 			buildPhases = (
+				877DEC2E675B21704BC09CEB /* [CP] Check Pods Manifest.lock */,
 				FA3F50D51F929A72007F6F9D /* Sources */,
 				FA3F50D61F929A72007F6F9D /* Frameworks */,
 				FA3F50D71F929A72007F6F9D /* Resources */,
+				944FE2A893FC12DDCFDE1CA8 /* [CP] Embed Pods Frameworks */,
+				EE50C8C70F433A93927D71D7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -171,7 +193,7 @@
 				TargetAttributes = {
 					FA3F50D81F929A72007F6F9D = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 4Y926PKV7D;
+						DevelopmentTeam = 3NE2WWC249;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
@@ -212,6 +234,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		877DEC2E675B21704BC09CEB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VolunteerNow-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		944FE2A893FC12DDCFDE1CA8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-VolunteerNow/Pods-VolunteerNow-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VolunteerNow/Pods-VolunteerNow-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EE50C8C70F433A93927D71D7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VolunteerNow/Pods-VolunteerNow-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FA3F50D51F929A72007F6F9D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -232,6 +308,7 @@
 				FA3F50DF1F929A72007F6F9D /* FirstViewController.swift in Sources */,
 				FA36CC801F9410B40012A0DA /* Event.swift in Sources */,
 				FA3F51001F92BF39007F6F9D /* ContainerSearchController.swift in Sources */,
+				FA2288A51F9BCF700063C693 /* EventDetailController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,13 +429,14 @@
 		};
 		FA3F50EE1F929A72007F6F9D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C7ADA7A0481F8ED463455750 /* Pods-VolunteerNow.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 4Y926PKV7D;
+				DEVELOPMENT_TEAM = 3NE2WWC249;
 				INFOPLIST_FILE = VolunteerNow/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ayushdev.Volunteer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.anildev.Volunteer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -366,13 +444,14 @@
 		};
 		FA3F50EF1F929A72007F6F9D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D80D05A16FBC781318CD52F0 /* Pods-VolunteerNow.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 4Y926PKV7D;
+				DEVELOPMENT_TEAM = 3NE2WWC249;
 				INFOPLIST_FILE = VolunteerNow/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ayushdev.Volunteer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.anildev.Volunteer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
