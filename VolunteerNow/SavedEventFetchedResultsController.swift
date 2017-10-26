@@ -15,13 +15,18 @@ class SavedEventFetchedResultsController: NSFetchedResultsController<SavedEvent>
     
     init(managedObjectContext: NSManagedObjectContext, tableView: UITableView) {
         self.tableView = tableView
+        // Call super initializers in order to make a fetch results controller
         super.init(fetchRequest: SavedEvent.fetchRequest(), managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
         
+        // Sets fetched results controller delegate for functions below
         self.delegate = self
         
         tryFetch()
     }
     
+    // MARK: - Helper Functions
+    
+    // Function to call perform fetch that already has do/catch block implemente
     func tryFetch() {
         do {
             try performFetch()
@@ -32,26 +37,26 @@ class SavedEventFetchedResultsController: NSFetchedResultsController<SavedEvent>
     
     // MARK: - Fetched Results Controller Delegate
     
+    // Once changes are made, table view will begin updates
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.beginUpdates()
     }
     
+    // Depending on type fo change for row, corresponding functions are called to keep efficiency
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        
         switch type {
         case .insert:
-            guard let newIndexPath = newIndexPath else { return }
-            tableView.insertRows(at: [newIndexPath], with: .automatic)
+            tableView.insertRows(at: [newIndexPath!], with: .fade)
         case .delete:
-            guard let indexPath = indexPath else { return }
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-        case .update, .move:
-            guard let indexPath = indexPath else { return }
-            tableView.reloadRows(at: [indexPath], with: .automatic)
+            tableView.deleteRows(at: [indexPath!], with: .fade)
+        case .update:
+            tableView.reloadRows(at: [indexPath!], with: .fade)
+        case .move:
+            tableView.moveRow(at: indexPath!, to: newIndexPath!)
         }
     }
     
-    
+    // Once changes are implemented, table view ends updates
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
     }

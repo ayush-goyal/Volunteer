@@ -14,6 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
+    // Initializes core data stack and managed object context to use in rest of application
     let coreDataStack = CoreDataStack()
     lazy var managedObjectContext: NSManagedObjectContext = {
         self.coreDataStack.managedObjectContext
@@ -27,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let tabBarController = window!.rootViewController as! UITabBarController
         
+        // Gets initial views from tab bar controller and sets managed object context with dependency injection to keep context consistent across views
         if let tabBarViewControllers = tabBarController.viewControllers {
             if let navigationControllerForContainerSearchController = tabBarViewControllers[0] as? UINavigationController, let containerSearchController = navigationControllerForContainerSearchController.topViewController as? ContainerSearchController {
                 containerSearchController.managedObjectContext = self.managedObjectContext

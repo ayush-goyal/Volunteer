@@ -11,6 +11,7 @@ import Foundation
 
 class CoreDataStack {
     
+    // Create persistent container using VolunteerNow based on managed object model
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "VolunteerNow")
         container.loadPersistentStores() { storeDescription, error in
@@ -22,6 +23,7 @@ class CoreDataStack {
         return container
     }()
     
+    // Use persistent container to create managed object context
     lazy var managedObjectContext: NSManagedObjectContext = {
         let container = self.persistentContainer
         return container.viewContext
@@ -29,8 +31,10 @@ class CoreDataStack {
     
 }
 
+// Create extension on managed object context in order to easily save changes made
 extension NSManagedObjectContext {
     func saveChanges() {
+        // Check if any changes were made to context
         if self.hasChanges {
             do {
                 try save()

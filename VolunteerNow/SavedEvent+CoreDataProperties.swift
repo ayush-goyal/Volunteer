@@ -13,6 +13,7 @@ import CoreData
 
 extension SavedEvent {
 
+    // Helper function to get fetch request for saved events, sort descriptors are also called here
     @nonobjc public class func fetchRequest() -> NSFetchRequest<SavedEvent> {
         let request = NSFetchRequest<SavedEvent>(entityName: "SavedEvent")
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
