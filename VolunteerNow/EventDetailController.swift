@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import CoreData
 
 class EventDetailController: UIViewController {
     
-    var event: Event?
+    var event: Event!
+    var managedObjectContext: NSManagedObjectContext!
     
     @IBOutlet weak var organizerLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
@@ -30,8 +32,6 @@ class EventDetailController: UIViewController {
     }
     
     func configureView() {
-        print(event)
-        guard let event = event else { return }
         nameLabel.text = event.name
         organizerLabel.text = event.organizer
         descriptionLabel.text = event.information
@@ -40,6 +40,16 @@ class EventDetailController: UIViewController {
     }
     
     @IBAction func saveEvent(_ sender: Any) {
+        let savedEvent = NSEntityDescription.insertNewObject(forEntityName: "SavedEvent", into: managedObjectContext) as! SavedEvent
+        savedEvent.name = event.name
+        savedEvent.organizer = event.organizer
+        savedEvent.information = event.information
+        savedEvent.date = event.date
+        savedEvent.latitude = event.coordinate.latitude
+        savedEvent.longitude = event.coordinate.longitude
+        savedEvent.link = event.link
+        savedEvent.location = event.location
         
+        managedObjectContext.saveChanges()
     }
 }

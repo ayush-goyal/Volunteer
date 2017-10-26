@@ -7,11 +7,17 @@
 //
 
 import UIKit
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    let coreDataStack = CoreDataStack()
+    lazy var managedObjectContext: NSManagedObjectContext = {
+        self.coreDataStack.managedObjectContext
+    }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -19,12 +25,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = UIColor.red
         UINavigationBar.appearance().tintColor = UIColor.white
         
+        let tabBarController = window!.rootViewController as! UITabBarController
+        
+        if let tabBarViewControllers = tabBarController.viewControllers {
+            if let navigationControllerForContainerSearchController = tabBarViewControllers[0] as? UINavigationController, let containerSearchController = navigationControllerForContainerSearchController.topViewController as? ContainerSearchController {
+                containerSearchController.managedObjectContext = self.managedObjectContext
+            }
+            
+            if let navigationControllerForSavedEventsController = tabBarViewControllers[1] as? UINavigationController, let savedEventsController = navigationControllerForSavedEventsController.topViewController as? SavedEventsController {
+                savedEventsController.managedObjectContext = self.managedObjectContext
+            }
+            
+        }
+        
+        
         return true
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+        managedObjectContext.saveChanges()
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -42,6 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        managedObjectContext.saveChanges()
     }
 
 

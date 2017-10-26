@@ -8,12 +8,15 @@
 
 import UIKit
 import CoreLocation
+import CoreData
 
 class SearchListController: UITableViewController, CLLocationManagerDelegate {
 
     var currentLocation: CLLocation?
     var locationManager: CLLocationManager = CLLocationManager()
     var eventsData = [Event]()
+    var delegate: RequestEventsDataDelegate?
+    var managedObjectContext: NSManagedObjectContext!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,8 +84,17 @@ class SearchListController: UITableViewController, CLLocationManagerDelegate {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let eventDetailController = self.storyboard?.instantiateViewController(withIdentifier: "eventDetailController") as? EventDetailController {
             eventDetailController.event = eventsData[indexPath.row]
+            eventDetailController.managedObjectContext = managedObjectContext
             //present(eventDetailController, animated: true, completion: nil)
             navigationController?.pushViewController(eventDetailController, animated: true)
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let fifthToLastElement = eventsData.count - 5
+        if indexPath.row == fifthToLastElement {
+            print("Requesting data from list controller")
+            delegate?.requestData()
         }
     }
 

@@ -18,9 +18,10 @@ class Event: NSObject, MKAnnotation {
     var distance: String?
     var information: String
     var coordinate: CLLocationCoordinate2D
+    var link: String
     
     init?(data: [String: Any]) {
-        guard let name = data["name"] as? String, let organizer = data["organizer"] as? String, let date = data["date"] as? String, let location = data["location"] as? String, let description = data["description"] as? String, let coordinate = data["coordinate"] as? [String: CLLocationDegrees] else {
+        guard let name = data["name"] as? String, let organizer = data["organizer"] as? String, let date = data["date"] as? String, let location = data["location"] as? String, let description = data["description"] as? String, let coordinate = data["coordinate"] as? [String: CLLocationDegrees], let link = data["link"] as? String else {
             return nil
         }
         
@@ -30,6 +31,7 @@ class Event: NSObject, MKAnnotation {
         self.date = date
         self.location = location
         self.information = description
+        self.link = link
         guard let latitude = coordinate["latitude"], let longitude = coordinate["longitude"] else {
             return nil }
         self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)

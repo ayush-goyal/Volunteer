@@ -12,8 +12,6 @@
 		FA36CC7A1F92D8070012A0DA /* BarFilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA36CC791F92D8070012A0DA /* BarFilterController.swift */; };
 		FA36CC7C1F92D8160012A0DA /* BarSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA36CC7B1F92D8160012A0DA /* BarSearchController.swift */; };
 		FA36CC7E1F93BC3D0012A0DA /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA36CC7D1F93BC3D0012A0DA /* EventCell.swift */; };
-		FA36CC801F9410B40012A0DA /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA36CC7F1F9410B40012A0DA /* Event.swift */; };
-		FA36CC821F9419370012A0DA /* EventData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA36CC811F9419370012A0DA /* EventData.swift */; };
 		FA3F50DD1F929A72007F6F9D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3F50DC1F929A72007F6F9D /* AppDelegate.swift */; };
 		FA3F50DF1F929A72007F6F9D /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3F50DE1F929A72007F6F9D /* FirstViewController.swift */; };
 		FA3F50E11F929A72007F6F9D /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3F50E01F929A72007F6F9D /* SecondViewController.swift */; };
@@ -28,6 +26,14 @@
 		FA3F51001F92BF39007F6F9D /* ContainerSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3F50FF1F92BF39007F6F9D /* ContainerSearchController.swift */; };
 		FA3F51021F92C920007F6F9D /* SearchListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3F51011F92C920007F6F9D /* SearchListController.swift */; };
 		FA3F51041F92C936007F6F9D /* SearchMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3F51031F92C936007F6F9D /* SearchMapController.swift */; };
+		FA65D89A1F9FFA2100E09131 /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA65D8991F9FFA2100E09131 /* AccountController.swift */; };
+		FA65D89D1FA0290A00E09131 /* VolunteerNow.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FA65D89B1FA0290A00E09131 /* VolunteerNow.xcdatamodeld */; };
+		FA65D8AB1FA030DB00E09131 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA65D8AA1FA030DB00E09131 /* CoreDataStack.swift */; };
+		FA65D8AD1FA0345B00E09131 /* SavedEventFetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA65D8AC1FA0345B00E09131 /* SavedEventFetchedResultsController.swift */; };
+		FA65D8AF1FA0393200E09131 /* SavedEventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA65D8AE1FA0393200E09131 /* SavedEventsController.swift */; };
+		FA65D8BA1FA03D5700E09131 /* SavedEvent+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA65D8B81FA03D5700E09131 /* SavedEvent+CoreDataClass.swift */; };
+		FA65D8BB1FA03D5700E09131 /* SavedEvent+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA65D8B91FA03D5700E09131 /* SavedEvent+CoreDataProperties.swift */; };
+		FA65D8BD1FA03D7900E09131 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA65D8BC1FA03D7900E09131 /* Event.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,8 +44,6 @@
 		FA36CC791F92D8070012A0DA /* BarFilterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarFilterController.swift; sourceTree = "<group>"; };
 		FA36CC7B1F92D8160012A0DA /* BarSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarSearchController.swift; sourceTree = "<group>"; };
 		FA36CC7D1F93BC3D0012A0DA /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
-		FA36CC7F1F9410B40012A0DA /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		FA36CC811F9419370012A0DA /* EventData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventData.swift; sourceTree = "<group>"; };
 		FA3F50D91F929A72007F6F9D /* VolunteerNow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VolunteerNow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA3F50DC1F929A72007F6F9D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA3F50DE1F929A72007F6F9D /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +60,14 @@
 		FA3F50FF1F92BF39007F6F9D /* ContainerSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerSearchController.swift; sourceTree = "<group>"; };
 		FA3F51011F92C920007F6F9D /* SearchListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchListController.swift; sourceTree = "<group>"; };
 		FA3F51031F92C936007F6F9D /* SearchMapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchMapController.swift; sourceTree = "<group>"; };
+		FA65D8991F9FFA2100E09131 /* AccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountController.swift; sourceTree = "<group>"; };
+		FA65D89C1FA0290A00E09131 /* VolunteerNow.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VolunteerNow.xcdatamodel; sourceTree = "<group>"; };
+		FA65D8AA1FA030DB00E09131 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		FA65D8AC1FA0345B00E09131 /* SavedEventFetchedResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedEventFetchedResultsController.swift; sourceTree = "<group>"; };
+		FA65D8AE1FA0393200E09131 /* SavedEventsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedEventsController.swift; sourceTree = "<group>"; };
+		FA65D8B81FA03D5700E09131 /* SavedEvent+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedEvent+CoreDataClass.swift"; sourceTree = "<group>"; };
+		FA65D8B91FA03D5700E09131 /* SavedEvent+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SavedEvent+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FA65D8BC1FA03D7900E09131 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +123,7 @@
 				FA3F50E51F929A72007F6F9D /* Assets.xcassets */,
 				FA3F50E71F929A72007F6F9D /* LaunchScreen.storyboard */,
 				FA3F50EA1F929A72007F6F9D /* Info.plist */,
+				FA65D8991F9FFA2100E09131 /* AccountController.swift */,
 			);
 			path = VolunteerNow;
 			sourceTree = "<group>";
@@ -127,6 +140,12 @@
 		FA3F50FC1F92A9F1007F6F9D /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				FA65D8B81FA03D5700E09131 /* SavedEvent+CoreDataClass.swift */,
+				FA65D8B91FA03D5700E09131 /* SavedEvent+CoreDataProperties.swift */,
+				FA65D89B1FA0290A00E09131 /* VolunteerNow.xcdatamodeld */,
+				FA65D8AA1FA030DB00E09131 /* CoreDataStack.swift */,
+				FA65D8AC1FA0345B00E09131 /* SavedEventFetchedResultsController.swift */,
+				FA65D8AE1FA0393200E09131 /* SavedEventsController.swift */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -134,14 +153,13 @@
 		FA3F50FE1F92ACAD007F6F9D /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				FA65D8BC1FA03D7900E09131 /* Event.swift */,
 				FA3F50FF1F92BF39007F6F9D /* ContainerSearchController.swift */,
 				FA3F51011F92C920007F6F9D /* SearchListController.swift */,
 				FA3F51031F92C936007F6F9D /* SearchMapController.swift */,
 				FA36CC791F92D8070012A0DA /* BarFilterController.swift */,
 				FA36CC7B1F92D8160012A0DA /* BarSearchController.swift */,
 				FA36CC7D1F93BC3D0012A0DA /* EventCell.swift */,
-				FA36CC7F1F9410B40012A0DA /* Event.swift */,
-				FA36CC811F9419370012A0DA /* EventData.swift */,
 				FA2288A41F9BCF6F0063C693 /* EventDetailController.swift */,
 			);
 			name = Search;
@@ -293,20 +311,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA65D8AF1FA0393200E09131 /* SavedEventsController.swift in Sources */,
 				FA3F50FB1F92A94F007F6F9D /* SignupInformationController.swift in Sources */,
+				FA65D8BB1FA03D5700E09131 /* SavedEvent+CoreDataProperties.swift in Sources */,
 				FA3F50E11F929A72007F6F9D /* SecondViewController.swift in Sources */,
-				FA36CC821F9419370012A0DA /* EventData.swift in Sources */,
 				FA36CC7A1F92D8070012A0DA /* BarFilterController.swift in Sources */,
+				FA65D89A1F9FFA2100E09131 /* AccountController.swift in Sources */,
+				FA65D89D1FA0290A00E09131 /* VolunteerNow.xcdatamodeld in Sources */,
 				FA36CC7C1F92D8160012A0DA /* BarSearchController.swift in Sources */,
 				FA3F51041F92C936007F6F9D /* SearchMapController.swift in Sources */,
 				FA3F50F91F92A916007F6F9D /* LoginController.swift in Sources */,
 				FA3F50DD1F929A72007F6F9D /* AppDelegate.swift in Sources */,
 				FA36CC7E1F93BC3D0012A0DA /* EventCell.swift in Sources */,
+				FA65D8BD1FA03D7900E09131 /* Event.swift in Sources */,
 				FA3F50F51F92A8ED007F6F9D /* WelcomeController.swift in Sources */,
 				FA3F51021F92C920007F6F9D /* SearchListController.swift in Sources */,
 				FA3F50F71F92A906007F6F9D /* SignupController.swift in Sources */,
+				FA65D8BA1FA03D5700E09131 /* SavedEvent+CoreDataClass.swift in Sources */,
+				FA65D8AB1FA030DB00E09131 /* CoreDataStack.swift in Sources */,
+				FA65D8AD1FA0345B00E09131 /* SavedEventFetchedResultsController.swift in Sources */,
 				FA3F50DF1F929A72007F6F9D /* FirstViewController.swift in Sources */,
-				FA36CC801F9410B40012A0DA /* Event.swift in Sources */,
 				FA3F51001F92BF39007F6F9D /* ContainerSearchController.swift in Sources */,
 				FA2288A51F9BCF700063C693 /* EventDetailController.swift in Sources */,
 			);
@@ -479,6 +503,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		FA65D89B1FA0290A00E09131 /* VolunteerNow.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FA65D89C1FA0290A00E09131 /* VolunteerNow.xcdatamodel */,
+			);
+			currentVersion = FA65D89C1FA0290A00E09131 /* VolunteerNow.xcdatamodel */;
+			path = VolunteerNow.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = FA3F50D11F929A72007F6F9D /* Project object */;
 }

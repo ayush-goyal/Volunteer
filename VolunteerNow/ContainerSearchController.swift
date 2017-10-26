@@ -8,50 +8,80 @@
 
 import UIKit
 import Alamofire
+import CoreData
 
-class ContainerSearchController: UIViewController {
+protocol RequestEventsDataDelegate {
+    func requestData()
+    var serverRequestEventsDataURL: String { get }
+}
+
+class ContainerSearchController: UIViewController, RequestEventsDataDelegate {
     
     @IBOutlet weak var containerView: UIView!
     weak var currentViewController: UIViewController?
     var eventsData: [Event] = []
     var section: String = "1"
+    var location: String = "Marietta GA"
+    var isRequestingData = false
+    let serverRequestEventsDataURL = "https://fddffcab.ngrok.io/events"
+    var managedObjectContext: NSManagedObjectContext!
     
     override func viewDidLoad() {
-        
-        let parameters: Parameters = [
-            "location": "Marietts%20GA",
-            "section": section
-        ]
-        print("Making request")
-        Alamofire.request("https://bf14b6fc.ngrok.io/events", method: .post, parameters: parameters).responseJSON(completionHandler: { response in
-            let result = response.result
-            if let dict = result.value as? [String: AnyObject] {
-                print(dict)
-                if let section = dict["section"] as? String, let events = dict["events"] as? [[String: Any]] {
-                    self.section = section
-                    for event in events {
-                        if let newEvent = Event(data: event) {
-                            self.eventsData.append(newEvent)
-                        }
-                    }
-                }
-                if let viewController = self.currentViewController as? SearchListController {
-                    viewController.eventsData = self.eventsData
-                    viewController.updateView()
-                } else if let viewController = self.currentViewController as? SearchMapController {
-                    viewController.eventsData = self.eventsData
-                    viewController.addAnnotations()
-                }
-            }
-        })
-        
+        requestData()
+        print(managedObjectContext)
         self.currentViewController = self.storyboard?.instantiateViewController(withIdentifier: "searchListComponent")
         self.currentViewController!.view.translatesAutoresizingMaskIntoConstraints = false
+        if let viewController = self.currentViewController as? SearchListController {
+            viewController.delegate = self
+            viewController.managedObjectContext = managedObjectContext
+        }
         self.addChildViewController(self.currentViewController!)
         self.addSubview(subView: self.currentViewController!.view, toView: self.containerView)
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "first"), style: .plain, target: self, action: #selector(filterList(_:)))
     }
+    
+    func requestData() {
+        if !isRequestingData {
+            let location = self.location.replacingOccurrences(of: " ", with: "%20")
+            let parameters: Parameters = [
+                "location": location,
+                "section": self.section
+            ]
+            
+            isRequestingData = true
+            print("Making request with section: \(self.section)")
+            
+            Alamofire.request(serverRequestEventsDataURL, method: .post, parameters: parameters).validate().responseJSON(completionHandler: { response in
+                switch response.result {
+                case .failure(let error):
+                    print(error)
+                    self.isRequestingData = false
+                case .success:
+                    if let dict = response.result.value as? [String: AnyObject] {
+                        if let section = dict["section"] as? String, let events = dict["events"] as? [[String: Any]] {
+                            self.section = section
+                            for event in events {
+                                if let newEvent = Event(data: event) {
+                                    self.eventsData.append(newEvent)
+                                }
+                            }
+                        }
+                        self.isRequestingData = false
+                        if let viewController = self.currentViewController as? SearchListController {
+                            viewController.eventsData = self.eventsData
+                            viewController.updateView()
+                            viewController.managedObjectContext = self.managedObjectContext
+                        } else if let viewController = self.currentViewController as? SearchMapController {
+                            viewController.eventsData = self.eventsData
+                            viewController.addAnnotations()
+                        }
+                    }
+                }
+            })
+        }
+    }
+    
     
     @IBAction func showComponent(_ sender: UISegmentedControl) {
         var newViewController: UIViewController?
@@ -72,6 +102,7 @@ class ContainerSearchController: UIViewController {
         if let viewController = self.currentViewController as? SearchListController {
             viewController.eventsData = self.eventsData
             viewController.updateView()
+            viewController.delegate = self
         } else if let viewController = self.currentViewController as? SearchMapController {
             viewController.eventsData = self.eventsData
             viewController.addAnnotations()
