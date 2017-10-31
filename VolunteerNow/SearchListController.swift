@@ -14,7 +14,6 @@ class SearchListController: UITableViewController, CLLocationManagerDelegate {
 
     var currentLocation: CLLocation?
     var locationManager: CLLocationManager = CLLocationManager()
-    var eventsData = [Event]()
     var delegate: RequestEventsDataDelegate?
     var managedObjectContext: NSManagedObjectContext!
     
@@ -33,6 +32,7 @@ class SearchListController: UITableViewController, CLLocationManagerDelegate {
     }
     
     func updateView() {
+        print("updating view")
         tableView.reloadData()
     }
     
@@ -55,21 +55,33 @@ class SearchListController: UITableViewController, CLLocationManagerDelegate {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(eventsData.count)
         return eventsData.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print("hello")
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as? EventCell else { fatalError() }
 
         cell.eventName.text = eventsData[indexPath.row].name
         cell.eventOrganizer.text = eventsData[indexPath.row].organizer
-        cell.eventDate.text = eventsData[indexPath.row].date
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yy"
+        let startDate = dateFormatter.string(from: eventsData[indexPath.row].startDate)
+        
+        if let endDate = eventsData[indexPath.row].endDate {
+            cell.eventDate.text = "\(startDate) - \(dateFormatter.string(from: endDate))"
+        } else {
+            cell.eventDate.text = startDate
+        }
         
         //cell.eventDistance.text = eventsData[indexPath.row].distance ?? eventsData[indexPath.row].location
         let distanceInCLLocation = CLLocation(latitude: eventsData[indexPath.row].coordinate.latitude, longitude: eventsData[indexPath.row].coordinate.longitude)
         if let distance = currentLocation?.distance(from: distanceInCLLocation) {
             let distanceInMiles = (distance * 10/1609.34).rounded() / 10.0 // Gives one decimal point precision
+            eventsData[indexPath.row].distance = distanceInMiles
             let distanceInText = String(format:"%.1f", distanceInMiles) + " miles"
             cell.eventDistance.text = distanceInText
             print(distance)

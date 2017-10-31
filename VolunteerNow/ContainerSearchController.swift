@@ -10,6 +10,8 @@ import UIKit
 import Alamofire
 import CoreData
 
+var eventsData: [Event] = []
+
 protocol RequestEventsDataDelegate {
     func requestData()
     var serverRequestEventsDataURL: String { get }
@@ -19,12 +21,14 @@ class ContainerSearchController: UIViewController, RequestEventsDataDelegate {
     
     @IBOutlet weak var containerView: UIView!
     weak var currentViewController: UIViewController?
-    var eventsData: [Event] = []
     var section: String = "1"
     var location: String = "Marietta GA"
     var isRequestingData = false
     let serverRequestEventsDataURL = "https://fddffcab.ngrok.io/events"
     var managedObjectContext: NSManagedObjectContext!
+    
+    var selectedCategory: CategoryTypes = .all
+    var selectedSort: SortTypes = .relevance
     
     override func viewDidLoad() {
         requestData()
@@ -62,19 +66,20 @@ class ContainerSearchController: UIViewController, RequestEventsDataDelegate {
                         if let section = dict["section"] as? String, let events = dict["events"] as? [[String: Any]] {
                             self.section = section
                             for event in events {
+                                print(event)
                                 if let newEvent = Event(data: event) {
-                                    self.eventsData.append(newEvent)
+                                    eventsData.append(newEvent)
+                                    print("appended")
                                 }
                             }
                         }
                         self.isRequestingData = false
                         if let viewController = self.currentViewController as? SearchListController {
-                            viewController.eventsData = self.eventsData
                             viewController.updateView()
                             viewController.managedObjectContext = self.managedObjectContext
                         } else if let viewController = self.currentViewController as? SearchMapController {
-                            viewController.eventsData = self.eventsData
                             viewController.addAnnotations()
+                            viewController.managedObjectContext = self.managedObjectContext
                         }
                     }
                 }
@@ -100,12 +105,12 @@ class ContainerSearchController: UIViewController, RequestEventsDataDelegate {
         self.cycleFromViewController(oldViewController: self.currentViewController!, toViewController: newViewController!)
         self.currentViewController = newViewController
         if let viewController = self.currentViewController as? SearchListController {
-            viewController.eventsData = self.eventsData
             viewController.updateView()
             viewController.delegate = self
+            viewController.managedObjectContext = self.managedObjectContext
         } else if let viewController = self.currentViewController as? SearchMapController {
-            viewController.eventsData = self.eventsData
             viewController.addAnnotations()
+            viewController.managedObjectContext = self.managedObjectContext
         }
     }
     
@@ -139,8 +144,10 @@ class ContainerSearchController: UIViewController, RequestEventsDataDelegate {
     
     func filterList(_ sender: Any) {
         print("Filter List Opened")
-        if let viewController = storyboard?.instantiateViewController(withIdentifier: "barFilterNavigationController") {
-            present(viewController, animated: true, completion: nil)
+        if let navigationViewController = storyboard?.instantiateViewController(withIdentifier: "barFilterNavigationController") as? UINavigationController, let viewController = navigationViewController.topViewController as? BarFilterController {
+            viewController.selectedCategory = selectedCategory
+            viewController.selectedSort = selectedSort
+            present(navigationViewController, animated: true, completion: nil)
         }
         
     }
@@ -152,8 +159,13 @@ class ContainerSearchController: UIViewController, RequestEventsDataDelegate {
     
     @IBAction func doneFilterDetails(_ segue: UIStoryboardSegue) {
         print("Recalculate List")
+        switch selectedSort {
+        case .closest:
+            eventsData = eventsData.sorted
+        case .upcoming, .relevance, .popularity:
+            return
+        }
     }
-    
     
     func zoomMap(_ sender: Any) {
         print("Zoom Map")
@@ -166,6 +178,19 @@ class ContainerSearchController: UIViewController, RequestEventsDataDelegate {
     override func viewWillDisappear(_ animated: Bool) { // Changes Navigation bar when view leaves to detail view
         let backButton = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
         self.navigationItem.backBarButtonItem = backButton
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "searchEvents" {
+            let barSearchController = segue.destination as! BarSearchController
+            barSearchController.managedObjectContext = managedObjectContext
+            
+            if let viewController = self.currentViewController as? SearchListController {
+                barSearchController.currentLocation = viewController.currentLocation
+            } else if let viewController = self.currentViewController as? SearchMapController {
+                barSearchController.currentLocation = viewController.currentLocation
+            }
+        }
     }
     
 }

@@ -10,6 +10,11 @@ import UIKit
 
 class SearchEventCell: UITableViewCell {
 
+    @IBOutlet weak var eventDate: UILabel!
+    @IBOutlet weak var eventDistance: UILabel!
+    @IBOutlet weak var eventOrganizer: UILabel!
+    @IBOutlet weak var eventName: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

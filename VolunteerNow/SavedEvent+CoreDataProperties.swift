@@ -20,13 +20,15 @@ extension SavedEvent {
         return request
     }
 
+    @NSManaged public var startDate: Date
+    @NSManaged public var endDate: Date?
     @NSManaged public var information: String?
+    @NSManaged public var latitude: Double
     @NSManaged public var link: String?
     @NSManaged public var location: String?
+    @NSManaged public var longitude: Double
     @NSManaged public var name: String?
     @NSManaged public var organizer: String?
-    @NSManaged public var latitude: Double
-    @NSManaged public var longitude: Double
-    @NSManaged public var date: String?
+    @NSManaged public var eventID: Int32
 
 }

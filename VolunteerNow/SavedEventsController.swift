@@ -47,5 +47,22 @@ class SavedEventsController: UITableViewController {
 
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let eventDetailController = self.storyboard?.instantiateViewController(withIdentifier: "eventDetailController") as? EventDetailController {
+            
+            for event in eventsData {
+                let eventID = event.eventID
+                let savedEvent = fetchedResultsController.object(at: indexPath)
+                let savedEventID = savedEvent.eventID
+                
+                if eventID == savedEventID {
+                    eventDetailController.event = event
+                    eventDetailController.managedObjectContext = managedObjectContext
+                    navigationController?.pushViewController(eventDetailController, animated: true)
+                }
+            }
+        }
+    }
 
 }

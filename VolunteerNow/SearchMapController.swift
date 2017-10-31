@@ -9,12 +9,14 @@
 import UIKit
 import MapKit
 import CoreLocation
+import CoreData
 
 class SearchMapController: UIViewController, CLLocationManagerDelegate {
 
     @IBOutlet var mapView: MKMapView!
     var locationManager = CLLocationManager()
-    var eventsData = [Event]()
+    var managedObjectContext: NSManagedObjectContext!
+    var currentLocation: CLLocation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,18 +27,20 @@ class SearchMapController: UIViewController, CLLocationManagerDelegate {
         locationManager.requestAlwaysAuthorization()
         
         zoomMap()
+        
+        if let temporaryLocation = locationManager.location?.coordinate {
+            currentLocation = CLLocation(latitude: temporaryLocation.latitude, longitude: temporaryLocation.longitude)
+        }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .authorizedAlways {
             mapView.showsUserLocation = true
         }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        currentLocation = locations.last
     }
     
     func zoomMap() {
@@ -81,6 +85,7 @@ extension SearchMapController: MKMapViewDelegate {
         
         if let eventDetailController = self.storyboard?.instantiateViewController(withIdentifier: "eventDetailController") as? EventDetailController {
             eventDetailController.event = event
+            eventDetailController.managedObjectContext = managedObjectContext
             //present(eventDetailController, animated: true, completion: nil)
             navigationController?.pushViewController(eventDetailController, animated: true)
         }

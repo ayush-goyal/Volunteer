@@ -23,6 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        // Call if needed to remove all core data records
+        deleteAllCoreDataRecords()
+        
         UINavigationBar.appearance().barTintColor = UIColor.red
         UINavigationBar.appearance().tintColor = UIColor.white
         
@@ -40,8 +43,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         
-        
         return true
+    }
+    
+    func deleteAllCoreDataRecords() {
+        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "SavedEvent")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+        
+        do {
+            try managedObjectContext.execute(deleteRequest)
+            try managedObjectContext.save()
+        } catch {
+            print ("Error deleting all core data records in SavedEvent")
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

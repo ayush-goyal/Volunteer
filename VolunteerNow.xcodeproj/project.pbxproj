@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E3FD6CC4B8CBEA8DBEB57D0F /* Pods_VolunteerNow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E70E0217291F8488A8BE40 /* Pods_VolunteerNow.framework */; };
 		FA2288A51F9BCF700063C693 /* EventDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2288A41F9BCF6F0063C693 /* EventDetailController.swift */; };
+		FA2EB3F21FA7F571009C5F37 /* SearchEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2EB3F11FA7F570009C5F37 /* SearchEventCell.swift */; };
 		FA36CC7A1F92D8070012A0DA /* BarFilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA36CC791F92D8070012A0DA /* BarFilterController.swift */; };
 		FA36CC7C1F92D8160012A0DA /* BarSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA36CC7B1F92D8160012A0DA /* BarSearchController.swift */; };
 		FA36CC7E1F93BC3D0012A0DA /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA36CC7D1F93BC3D0012A0DA /* EventCell.swift */; };
@@ -39,6 +40,7 @@
 		C7ADA7A0481F8ED463455750 /* Pods-VolunteerNow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VolunteerNow.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VolunteerNow/Pods-VolunteerNow.debug.xcconfig"; sourceTree = "<group>"; };
 		D80D05A16FBC781318CD52F0 /* Pods-VolunteerNow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VolunteerNow.release.xcconfig"; path = "Pods/Target Support Files/Pods-VolunteerNow/Pods-VolunteerNow.release.xcconfig"; sourceTree = "<group>"; };
 		FA2288A41F9BCF6F0063C693 /* EventDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailController.swift; sourceTree = "<group>"; };
+		FA2EB3F11FA7F570009C5F37 /* SearchEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEventCell.swift; sourceTree = "<group>"; };
 		FA36CC791F92D8070012A0DA /* BarFilterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarFilterController.swift; sourceTree = "<group>"; };
 		FA36CC7B1F92D8160012A0DA /* BarSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarSearchController.swift; sourceTree = "<group>"; };
 		FA36CC7D1F93BC3D0012A0DA /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				FA36CC7B1F92D8160012A0DA /* BarSearchController.swift */,
 				FA36CC7D1F93BC3D0012A0DA /* EventCell.swift */,
 				FA2288A41F9BCF6F0063C693 /* EventDetailController.swift */,
+				FA2EB3F11FA7F570009C5F37 /* SearchEventCell.swift */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 				FA36CC7C1F92D8160012A0DA /* BarSearchController.swift in Sources */,
 				FA3F51041F92C936007F6F9D /* SearchMapController.swift in Sources */,
 				FA3F50F91F92A916007F6F9D /* LoginController.swift in Sources */,
+				FA2EB3F21FA7F571009C5F37 /* SearchEventCell.swift in Sources */,
 				FA3F50DD1F929A72007F6F9D /* AppDelegate.swift in Sources */,
 				FA36CC7E1F93BC3D0012A0DA /* EventCell.swift in Sources */,
 				FA65D8BD1FA03D7900E09131 /* Event.swift in Sources */,
