@@ -73,6 +73,8 @@ class ContainerSearchController: UIViewController, RequestEventsDataDelegate {
                                 }
                             }
                         }
+                        self.sortEventsBySort()
+                        
                         self.isRequestingData = false
                         if let viewController = self.currentViewController as? SearchListController {
                             viewController.updateView()
@@ -159,9 +161,18 @@ class ContainerSearchController: UIViewController, RequestEventsDataDelegate {
     
     @IBAction func doneFilterDetails(_ segue: UIStoryboardSegue) {
         print("Recalculate List")
+        sortEventsBySort()
+    }
+    
+    func sortEventsBySort() {
         switch selectedSort {
         case .closest:
-            eventsData = eventsData.sorted
+            eventsData = eventsData.sorted{ $0.distance! < $1.distance! }
+            if let viewController = self.currentViewController as? SearchListController {
+                viewController.updateView()
+                viewController.delegate = self
+                viewController.managedObjectContext = self.managedObjectContext
+            }
         case .upcoming, .relevance, .popularity:
             return
         }

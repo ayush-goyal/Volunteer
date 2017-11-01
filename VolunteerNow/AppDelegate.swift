@@ -43,6 +43,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         
+        // Change default font
+        UILabel.appearance().font = UIFont(name: "Nunito-Regular", size: 17.0)
+        
+        // Change tab bar defaults
+        let semiBoldFont = UIFont(name: "Nunito-SemiBold", size: 11.0)!
+        let tabBarAttributesNormal = [NSFontAttributeName: semiBoldFont]
+        let boldFont = UIFont(name: "Nunito-Bold", size: 11.0)!
+        let tabBarAttributesSelected = [NSFontAttributeName: boldFont, NSForegroundColorAttributeName: UIColor(red: 53.0/255.0, green: 85.0/255.0, blue: 130.0/255.0, alpha: 1.0)]
+        
+        UITabBarItem.appearance().setTitleTextAttributes(tabBarAttributesNormal, for: .normal)
+        UITabBarItem.appearance().setTitleTextAttributes(tabBarAttributesSelected, for: .selected)
+        
         return true
     }
     

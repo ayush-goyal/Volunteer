@@ -45,7 +45,7 @@ class SearchMapController: UIViewController, CLLocationManagerDelegate {
     
     func zoomMap() {
         if let currentLocation: CLLocationCoordinate2D = locationManager.location?.coordinate {
-            let viewRegion = MKCoordinateRegionMakeWithDistance(currentLocation, 5000, 5000)
+            let viewRegion = MKCoordinateRegionMakeWithDistance(currentLocation, 8000, 8000)
             mapView.setRegion(viewRegion, animated: true)
         }
     }

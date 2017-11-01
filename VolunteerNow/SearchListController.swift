@@ -29,12 +29,29 @@ class SearchListController: UITableViewController, CLLocationManagerDelegate {
             currentLocation = CLLocation(latitude: temporaryLocation.latitude, longitude: temporaryLocation.longitude)
         }
         
+        calculateEventDistances()
+        
+    }
+    
+    func calculateEventDistances() {
+        for event in eventsData {
+            if event.distance == nil {
+                let distanceInCLLocation = CLLocation(latitude: event.coordinate.latitude, longitude: event.coordinate.longitude)
+                if let distance = currentLocation?.distance(from: distanceInCLLocation) {
+                    let distanceInMiles = (distance * 10/1609.34).rounded() / 10.0 // Gives one decimal point precision
+                    event.distance = distanceInMiles
+                }
+            }
+        }
     }
     
     func updateView() {
-        print("updating view")
+        print("Updating view")
+        calculateEventDistances()
         tableView.reloadData()
     }
+    
+    
     
     //MARK: - CoreLocation Delegate
     
@@ -78,6 +95,7 @@ class SearchListController: UITableViewController, CLLocationManagerDelegate {
         }
         
         //cell.eventDistance.text = eventsData[indexPath.row].distance ?? eventsData[indexPath.row].location
+        /*
         let distanceInCLLocation = CLLocation(latitude: eventsData[indexPath.row].coordinate.latitude, longitude: eventsData[indexPath.row].coordinate.longitude)
         if let distance = currentLocation?.distance(from: distanceInCLLocation) {
             let distanceInMiles = (distance * 10/1609.34).rounded() / 10.0 // Gives one decimal point precision
@@ -85,6 +103,13 @@ class SearchListController: UITableViewController, CLLocationManagerDelegate {
             let distanceInText = String(format:"%.1f", distanceInMiles) + " miles"
             cell.eventDistance.text = distanceInText
             print(distance)
+        } else {
+            cell.eventDistance.text = eventsData[indexPath.row].location
+        }*/
+        
+        if let distance = eventsData[indexPath.row].distance {
+            let distanceInText = String(format:"%.1f", distance) + " miles"
+            cell.eventDistance.text = distanceInText
         } else {
             cell.eventDistance.text = eventsData[indexPath.row].location
         }
