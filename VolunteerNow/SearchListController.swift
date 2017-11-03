@@ -22,7 +22,8 @@ class SearchListController: UITableViewController, CLLocationManagerDelegate {
 
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startUpdatingLocation()
         //locationManager.startUpdatingLocation()
         
         if let temporaryLocation = locationManager.location?.coordinate {
@@ -34,35 +35,37 @@ class SearchListController: UITableViewController, CLLocationManagerDelegate {
     }
     
     func calculateEventDistances() {
+        //print("Current Location")
+        //print(currentLocation)
         for event in eventsData {
-            if event.distance == nil {
-                let distanceInCLLocation = CLLocation(latitude: event.coordinate.latitude, longitude: event.coordinate.longitude)
-                if let distance = currentLocation?.distance(from: distanceInCLLocation) {
-                    let distanceInMiles = (distance * 10/1609.34).rounded() / 10.0 // Gives one decimal point precision
-                    event.distance = distanceInMiles
-                }
+            let distanceInCLLocation = CLLocation(latitude: event.coordinate.latitude, longitude: event.coordinate.longitude)
+            if let distance = currentLocation?.distance(from: distanceInCLLocation) {
+                let distanceInMiles = (distance * 10/1609.34).rounded() / 10.0 // Gives one decimal point precision
+                event.distance = distanceInMiles
             }
         }
     }
     
     func updateView() {
-        print("Updating view")
-        calculateEventDistances()
         tableView.reloadData()
     }
-    
-    
     
     //MARK: - CoreLocation Delegate
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         currentLocation = locations.last
         let locationValue: CLLocationCoordinate2D = manager.location!.coordinate
-        //print(locationValue)
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error.localizedDescription)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        print(currentLocation)
+        delegate?.requestData()
+        calculateEventDistances()
+        updateView()
     }
 
     // MARK: - Table view data source
@@ -72,13 +75,11 @@ class SearchListController: UITableViewController, CLLocationManagerDelegate {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(eventsData.count)
         return eventsData.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("hello")
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as? EventCell else { fatalError() }
 
         cell.eventName.text = eventsData[indexPath.row].name
@@ -118,19 +119,28 @@ class SearchListController: UITableViewController, CLLocationManagerDelegate {
         
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    /*override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let eventDetailController = self.storyboard?.instantiateViewController(withIdentifier: "eventDetailController") as? EventDetailController {
             eventDetailController.event = eventsData[indexPath.row]
             eventDetailController.managedObjectContext = managedObjectContext
             //present(eventDetailController, animated: true, completion: nil)
             navigationController?.pushViewController(eventDetailController, animated: true)
         }
+    }*/
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showEventDetail" {
+            if let eventDetailController = segue.destination as? EventDetailController {
+                let path = tableView.indexPathForSelectedRow!
+                eventDetailController.event = eventsData[path.row]
+                eventDetailController.managedObjectContext = managedObjectContext
+            }
+        }
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let fifthToLastElement = eventsData.count - 5
         if indexPath.row == fifthToLastElement {
-            print("Requesting data from list controller")
             delegate?.requestData()
         }
     }

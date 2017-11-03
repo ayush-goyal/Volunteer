@@ -31,12 +31,21 @@ class EventDetailController: UIViewController {
         */
         
         
-        
-        
+        let backButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(self.dismissDetail))
+        navigationItem.leftBarButtonItem = backButton
         
         navigationItem.title = "Event"
         
         changeButtonState()
+        
+        //Change font weights and style
+        
+        nameLabel.font = UIFont(name: "Nunito-Bold", size: 23.0)!
+        organizerLabel.font = UIFont(name: "Nunito-SemiBold", size: 20.0)!
+    }
+    
+    func dismissDetail() {
+        navigationController?.popViewController(animated: true)
     }
     
     /*func fetchSavedEventByID(eventID: Int) -> SavedEvent? {
@@ -98,11 +107,11 @@ class EventDetailController: UIViewController {
     
     func changeButtonState() {
         if event.isSaved {
-            saveButton.backgroundColor = UIColor.red
-            saveButton.setTitle("Remove", for: .normal)
+            saveButton.backgroundColor = UIColor(red: 255.0/255.0, green: 133.0/255.0, blue: 133.0/255.0, alpha: 1.0)
+            saveButton.setTitle("Leave Event", for: .normal)
         } else {
-            saveButton.backgroundColor = UIColor.green
-            saveButton.setTitle("Save Event", for: .normal)
+            saveButton.backgroundColor = UIColor(red: 122.0/255.0, green: 255.0/255.0, blue: 170.0/255.0, alpha: 1.0)
+            saveButton.setTitle("Sign Up for Event", for: .normal)
         }
     }
 }

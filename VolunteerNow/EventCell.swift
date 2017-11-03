@@ -18,6 +18,7 @@ class EventCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        eventName.font = UIFont(name: "Nunito-Bold", size: 17.0)!
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

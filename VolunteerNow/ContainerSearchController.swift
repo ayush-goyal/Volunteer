@@ -24,15 +24,13 @@ class ContainerSearchController: UIViewController, RequestEventsDataDelegate {
     var section: String = "1"
     var location: String = "Marietta GA"
     var isRequestingData = false
-    let serverRequestEventsDataURL = "https://fddffcab.ngrok.io/events"
+    let serverRequestEventsDataURL = "https://55a102d2.ngrok.io/events"
     var managedObjectContext: NSManagedObjectContext!
     
     var selectedCategory: CategoryTypes = .all
     var selectedSort: SortTypes = .relevance
     
     override func viewDidLoad() {
-        requestData()
-        print(managedObjectContext)
         self.currentViewController = self.storyboard?.instantiateViewController(withIdentifier: "searchListComponent")
         self.currentViewController!.view.translatesAutoresizingMaskIntoConstraints = false
         if let viewController = self.currentViewController as? SearchListController {
@@ -54,7 +52,6 @@ class ContainerSearchController: UIViewController, RequestEventsDataDelegate {
             ]
             
             isRequestingData = true
-            print("Making request with section: \(self.section)")
             
             Alamofire.request(serverRequestEventsDataURL, method: .post, parameters: parameters).validate().responseJSON(completionHandler: { response in
                 switch response.result {
@@ -66,10 +63,9 @@ class ContainerSearchController: UIViewController, RequestEventsDataDelegate {
                         if let section = dict["section"] as? String, let events = dict["events"] as? [[String: Any]] {
                             self.section = section
                             for event in events {
-                                print(event)
+                                //print(event)
                                 if let newEvent = Event(data: event) {
                                     eventsData.append(newEvent)
-                                    print("appended")
                                 }
                             }
                         }
@@ -77,6 +73,7 @@ class ContainerSearchController: UIViewController, RequestEventsDataDelegate {
                         
                         self.isRequestingData = false
                         if let viewController = self.currentViewController as? SearchListController {
+                            viewController.calculateEventDistances()
                             viewController.updateView()
                             viewController.managedObjectContext = self.managedObjectContext
                         } else if let viewController = self.currentViewController as? SearchMapController {
@@ -145,7 +142,6 @@ class ContainerSearchController: UIViewController, RequestEventsDataDelegate {
     }
     
     func filterList(_ sender: Any) {
-        print("Filter List Opened")
         if let navigationViewController = storyboard?.instantiateViewController(withIdentifier: "barFilterNavigationController") as? UINavigationController, let viewController = navigationViewController.topViewController as? BarFilterController {
             viewController.selectedCategory = selectedCategory
             viewController.selectedSort = selectedSort
@@ -160,7 +156,6 @@ class ContainerSearchController: UIViewController, RequestEventsDataDelegate {
     }
     
     @IBAction func doneFilterDetails(_ segue: UIStoryboardSegue) {
-        print("Recalculate List")
         sortEventsBySort()
     }
     
@@ -169,6 +164,7 @@ class ContainerSearchController: UIViewController, RequestEventsDataDelegate {
         case .closest:
             eventsData = eventsData.sorted{ $0.distance! < $1.distance! }
             if let viewController = self.currentViewController as? SearchListController {
+                viewController.calculateEventDistances()
                 viewController.updateView()
                 viewController.delegate = self
                 viewController.managedObjectContext = self.managedObjectContext

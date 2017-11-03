@@ -10,10 +10,16 @@ import UIKit
 
 class SignupInformationController: UIViewController {
 
+    @IBOutlet weak var welcomeLabel: UILabel!
+    @IBOutlet weak var welcomeInformationLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        welcomeLabel.font = UIFont(name: "Nunito-Bold", size: 36.0)
+        welcomeInformationLabel.font = UIFont(name: "Nunito-SemiBold", size: 21.0)
+
     }
 
     override func didReceiveMemoryWarning() {

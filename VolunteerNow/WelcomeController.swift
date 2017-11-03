@@ -10,10 +10,16 @@ import UIKit
 
 class WelcomeController: UIViewController {
 
+    @IBOutlet weak var welcomeLabel: UILabel!
+    @IBOutlet weak var signupButton: UIButton!
+    @IBOutlet weak var loginButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        welcomeLabel.font = UIFont(name: "Nunito-Bold", size: 42.0)
+        signupButton.titleLabel?.font = UIFont(name: "Nunito-SemiBold", size: 19.0)
+        loginButton.titleLabel?.font = UIFont(name: "Nunito-SemiBold", size: 19.0)
     }
 
     override func didReceiveMemoryWarning() {

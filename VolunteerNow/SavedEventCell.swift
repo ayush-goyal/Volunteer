@@ -1,23 +1,23 @@
 //
-//  SearchEventCell.swift
+//  SavedEventCell.swift
 //  VolunteerNow
 //
-//  Created by Macbook on 10/30/17.
+//  Created by Abhinav Piplani on 11/1/17.
 //  Copyright © 2017 Ayush. All rights reserved.
 //
 
 import UIKit
 
-class SearchEventCell: UITableViewCell {
+class SavedEventCell: UITableViewCell {
 
-    @IBOutlet weak var eventDate: UILabel!
-    @IBOutlet weak var eventDistance: UILabel!
-    @IBOutlet weak var eventOrganizer: UILabel!
     @IBOutlet weak var eventName: UILabel!
+    @IBOutlet weak var eventOrganizer: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        eventName.font = UIFont(name: "Nunito-Bold", size: 17.0)!
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

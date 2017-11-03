@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D0F61A661FA98A98002D37F1 /* SavedEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F61A651FA98A98002D37F1 /* SavedEventCell.swift */; };
+		D0F61A681FA99334002D37F1 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F61A671FA99334002D37F1 /* TabBarController.swift */; };
 		E3FD6CC4B8CBEA8DBEB57D0F /* Pods_VolunteerNow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E70E0217291F8488A8BE40 /* Pods_VolunteerNow.framework */; };
 		FA2288A51F9BCF700063C693 /* EventDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2288A41F9BCF6F0063C693 /* EventDetailController.swift */; };
 		FA2EB3F21FA7F571009C5F37 /* SearchEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2EB3F11FA7F570009C5F37 /* SearchEventCell.swift */; };
@@ -43,6 +45,9 @@
 /* Begin PBXFileReference section */
 		33E70E0217291F8488A8BE40 /* Pods_VolunteerNow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VolunteerNow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7ADA7A0481F8ED463455750 /* Pods-VolunteerNow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VolunteerNow.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VolunteerNow/Pods-VolunteerNow.debug.xcconfig"; sourceTree = "<group>"; };
+		D0F61A641FA9806A002D37F1 /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
+		D0F61A651FA98A98002D37F1 /* SavedEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedEventCell.swift; sourceTree = "<group>"; };
+		D0F61A671FA99334002D37F1 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		D80D05A16FBC781318CD52F0 /* Pods-VolunteerNow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VolunteerNow.release.xcconfig"; path = "Pods/Target Support Files/Pods-VolunteerNow/Pods-VolunteerNow.release.xcconfig"; sourceTree = "<group>"; };
 		FA2288A41F9BCF6F0063C693 /* EventDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailController.swift; sourceTree = "<group>"; };
 		FA2EB3F11FA7F570009C5F37 /* SearchEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEventCell.swift; sourceTree = "<group>"; };
@@ -132,6 +137,8 @@
 				FA3F50E71F929A72007F6F9D /* LaunchScreen.storyboard */,
 				FA3F50EA1F929A72007F6F9D /* Info.plist */,
 				FA65D8991F9FFA2100E09131 /* AccountController.swift */,
+				D0F61A641FA9806A002D37F1 /* Location.gpx */,
+				D0F61A671FA99334002D37F1 /* TabBarController.swift */,
 			);
 			path = VolunteerNow;
 			sourceTree = "<group>";
@@ -153,6 +160,7 @@
 				FA65D89B1FA0290A00E09131 /* VolunteerNow.xcdatamodeld */,
 				FA65D8AA1FA030DB00E09131 /* CoreDataStack.swift */,
 				FA65D8AC1FA0345B00E09131 /* SavedEventFetchedResultsController.swift */,
+				D0F61A651FA98A98002D37F1 /* SavedEventCell.swift */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -336,10 +344,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0F61A661FA98A98002D37F1 /* SavedEventCell.swift in Sources */,
 				FA65D8AF1FA0393200E09131 /* SavedEventsController.swift in Sources */,
 				FA3F50FB1F92A94F007F6F9D /* SignupInformationController.swift in Sources */,
 				FA65D8BB1FA03D5700E09131 /* SavedEvent+CoreDataProperties.swift in Sources */,
 				FA36CC7A1F92D8070012A0DA /* BarFilterController.swift in Sources */,
+				D0F61A681FA99334002D37F1 /* TabBarController.swift in Sources */,
 				FA65D89A1F9FFA2100E09131 /* AccountController.swift in Sources */,
 				FA65D89D1FA0290A00E09131 /* VolunteerNow.xcdatamodeld in Sources */,
 				FA36CC7C1F92D8160012A0DA /* BarSearchController.swift in Sources */,

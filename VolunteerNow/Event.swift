@@ -29,8 +29,6 @@ class Event: NSObject, MKAnnotation {
             return nil
         }
         
-        print("making event")
-        
         self.name = name
         self.title = name
         self.organizer = organizer

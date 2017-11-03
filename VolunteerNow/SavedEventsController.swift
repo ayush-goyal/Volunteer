@@ -38,12 +38,12 @@ class SavedEventsController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "savedEvent", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "savedEventCell", for: indexPath) as? SavedEventCell else { fatalError() }
         
         let savedEvent = fetchedResultsController.object(at: indexPath)
         
-        cell.textLabel?.text = savedEvent.name
-        cell.detailTextLabel?.text = savedEvent.organizer
+        cell.eventName.text = savedEvent.name
+        cell.eventOrganizer.text = savedEvent.organizer
 
         return cell
     }
